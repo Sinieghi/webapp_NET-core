@@ -1,0 +1,39 @@
+@model IEnumerable<WebApp.Models.Department>
+
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<h2>Departments</h2>
+
+<p>
+    <a asp-action="Create">Create new</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var it in Model)
+        {
+            <tr>
+                <td>
+                    @it.Id
+                </td>
+                <td>
+                    @it.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = it.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = it.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = it.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
