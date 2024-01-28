@@ -1,5 +1,4 @@
 using System.Data;
-using System.Runtime.Intrinsics.Arm;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
@@ -9,15 +8,10 @@ namespace WebApp.Controllers
     public class DepartmentsController : Controller
     {
 
-        //Like in Router.js this index name indicate the display element interface referente to his
-        //father, so if you use Index referente to root "/" you don't need pass any more argument on url
-        //just the name from the model of this controller ViewData["Title"] = "Departments";
-
-
         public async Task<IActionResult> Index()
         {
-            using var dp = new DepartmentContext();
-            return View(await dp.Department.ToListAsync());
+            using var db = new WebAppContext();
+            return View(await db.Department.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -26,8 +20,8 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            using var dp = new DepartmentContext();
-            var department = await dp.Department
+            using var db = new WebAppContext();
+            var department = await db.Department
              .FirstOrDefaultAsync(d => d.Id == id);
             if (department == null) return NotFound();
             ViewData["Name"] = department?.Name;
@@ -45,12 +39,12 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                using var dp = new DepartmentContext();
-                await dp.Database.EnsureCreatedAsync();
-                int id = dp.Department.Count() + 1;
+                using var db = new WebAppContext();
+                await db.Database.EnsureCreatedAsync();
+                int id = db.Department.Count() + 1;
                 department.Id = id;
-                await dp.Department.AddAsync(department);
-                await dp.SaveChangesAsync();
+                await db.Department.AddAsync(department);
+                await db.SaveChangesAsync();
             }
             return View(department);
         }
@@ -58,9 +52,9 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
-            using var dp = new DepartmentContext();
-            if (dp == null) return NotFound();
-            var department = await dp.Department.FindAsync(id);
+            using var db = new WebAppContext();
+            if (db == null) return NotFound();
+            var department = await db.Department.FindAsync(id);
 
             return View(department);
         }
@@ -74,9 +68,9 @@ namespace WebApp.Controllers
             {
                 try
                 {
-                    using var dp = new DepartmentContext();
-                    dp.Update(department);
-                    await dp.SaveChangesAsync();
+                    using var db = new WebAppContext();
+                    db.Update(department);
+                    await db.SaveChangesAsync();
                 }
                 catch (DBConcurrencyException)
                 {
@@ -92,8 +86,8 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
-            using var dp = new DepartmentContext();
-            var department = await dp.Department.FirstOrDefaultAsync(d => d.Id == id);
+            using var db = new WebAppContext();
+            var department = await db.Department.FirstOrDefaultAsync(d => d.Id == id);
             if (department == null) return NotFound();
             return View(department);
         }
@@ -102,18 +96,18 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var dp = new DepartmentContext();
-            var department = await dp.Department.FindAsync(id);
+            var db = new WebAppContext();
+            var department = await db.Department.FindAsync(id);
             if (department == null) return NotFound();
-            dp.Remove(department);
-            await dp.SaveChangesAsync();
+            db.Remove(department);
+            await db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private static bool DepartmentExists(int id)
         {
-            using var dp = new DepartmentContext();
-            return dp.Department.Any(e => e.Id == id);
+            using var db = new WebAppContext();
+            return db.Department.Any(e => e.Id == id);
         }
 
 
