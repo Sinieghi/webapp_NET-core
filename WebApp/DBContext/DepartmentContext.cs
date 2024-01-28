@@ -9,7 +9,8 @@ namespace WebApp.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=YOURDBSERVERNAME;database=YOURDBNAME;user=YOURUSER;password=YOURPASS");
+            URL dbLink = new();
+            optionsBuilder.UseMySQL(dbLink.url);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
