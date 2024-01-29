@@ -1,4 +1,6 @@
 
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 using WebApp;
 using WebApp.Models;
 using WebApp.Services;
@@ -10,9 +12,17 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<SellerServices>();
 builder.Services.AddScoped<DepartmentServices>();
+builder.Services.AddScoped<SalesRecordsServices>();
 
 var app = builder.Build();
-
+var enUS = new CultureInfo("en-US");
+var localizationOpts = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(enUS),
+    SupportedCultures = [enUS],
+    SupportedUICultures = [enUS]
+};
+app.UseRequestLocalization(localizationOpts);
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

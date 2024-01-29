@@ -1,4 +1,5 @@
 
+using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
 
 namespace WebApp.Services
@@ -7,9 +8,9 @@ namespace WebApp.Services
     {
         private readonly WebAppContext _context = new();
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return [.. _context.Department.OrderBy(d => d.Name)];
+            return await _context.Department.OrderBy(d => d.Name).ToListAsync();
         }
 
     }
