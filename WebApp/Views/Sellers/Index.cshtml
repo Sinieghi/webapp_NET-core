@@ -44,6 +44,7 @@
                     @Html.DisplayFor(m => it.BaseSalary)
                 </td>
                 <td>
+                    @* Just for notation, this asp-route-id is a parameter, like http://sxaf.com/xyz/:id *@
                     <a asp-action="Edit" asp-route-id="@it.Id">Edit</a>
                     <a asp-action="Delete" asp-route-id="@it.Id">Delete</a>
                     <a asp-action="Details" asp-route-id="@it.Id">Details</a>

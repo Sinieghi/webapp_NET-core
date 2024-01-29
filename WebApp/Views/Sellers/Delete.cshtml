@@ -1,0 +1,46 @@
+@model WebApp.Models.Seller
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Are you sure?</h3>
+
+<div class="">
+    <h4>Seller</h4>
+    <hr>
+    <dl class="data-bs-target">
+        <dt>
+            @Html.DisplayNameFor(_ => Model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(_ => Model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(_ => Model.BirthDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.BirthDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(_ => Model.BaseSalary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.BaseSalary)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id">
+        <button class="btn bg-danger" type="submit">Delete</button>
+        <a asp-action="Index">Back to list</a>
+    </form>
+</div>

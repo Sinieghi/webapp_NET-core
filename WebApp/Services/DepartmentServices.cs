@@ -9,7 +9,7 @@ namespace WebApp.Services
 
         public List<Department> FindAll()
         {
-            return [.. _context.Department];
+            return [.. _context.Department.OrderBy(d => d.Name)];
         }
 
     }

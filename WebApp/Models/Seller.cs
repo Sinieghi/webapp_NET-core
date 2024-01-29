@@ -14,6 +14,8 @@ namespace WebApp.Models
 
         public Department? Department { get; set; }
 
+        public int DepartmentId { get; set; }
+
         public ICollection<SalesRecords> Sales { get; set; } = [];
 
         public Seller() { }

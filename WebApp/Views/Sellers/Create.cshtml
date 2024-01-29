@@ -1,4 +1,4 @@
-@model WebApp.Models.Seller
+@model WebApp.Models.ViewModels.SellerFormViewModel
 
 @{
     ViewData["Tile"] = "Create";
@@ -16,20 +16,25 @@
     <div class="col-4">
         <form asp-action="Create" class="form-control">
             <div class="d-grid">
-                <label asp-for="Name">Name</label>
-                <input asp-for="Name">
+                <label asp-for="Seller.Name">Name</label>
+                <input asp-for="Seller.Name">
             </div>
             <div class="d-grid">
-                <label asp-for="Email">Email</label>
-                <input asp-for="Email">
+                <label asp-for="Seller.Email">Email</label>
+                <input asp-for="Seller.Email">
             </div>
             <div class="d-grid">
-                <label asp-for="BirthDay">BirthDay</label>
-                <input asp-for="BirthDay">
+                <label asp-for="Seller.BirthDay">BirthDay</label>
+                <input asp-for="Seller.BirthDay">
             </div>
             <div class="d-grid">
-                <label asp-for="BaseSalary">BaseSalary</label>
-                <input asp-for="BaseSalary">
+                <label asp-for="Seller.BaseSalary">BaseSalary</label>
+                <input asp-for="Seller.BaseSalary">
+            </div>
+            <div class="d-grid">
+                <label asp-for="Seller.DepartmentId"></label>
+                <select asp-for="Seller.DepartmentId"
+                    asp-items="@(new SelectList(Model.Departments, "Id" , "Name" ))"></select>
             </div>
             <div class="d-grid">
                 <button class="btn bg-primary" style="margin-top: 1rem;">Create</button>

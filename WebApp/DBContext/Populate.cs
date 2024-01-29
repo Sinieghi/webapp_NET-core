@@ -11,8 +11,8 @@ namespace WebApp
 
         public void Seed()
         {
+            _context.Database.EnsureCreated();
             if (_context.Department.Any() || _context.Seller.Any() || _context.SalesRecords.Any()) return;
-
             Department d1 = new(1, "Computers");
             Department d2 = new(2, "Electronics");
             Department d3 = new(3, "Fashion");

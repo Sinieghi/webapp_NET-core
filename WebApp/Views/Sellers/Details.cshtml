@@ -1,0 +1,54 @@
+@model WebApp.Models.Seller
+
+@{
+    ViewData["Title"] = "Detais";
+}
+
+<h2>@ViewData["Tite"]</h2>
+
+<div class="">
+    <h4>Details</h4>
+    <hr>
+    <dl class="data-bs-target">
+        <dt>
+            @Html.DisplayNameFor(_ => Model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(_ => Model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(_ => Model.BirthDay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.BirthDay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(_ => Model.BaseSalary)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.BaseSalary)
+        </dd>
+        @* Rendering a department name, this requires a "Include()" (code ref for include()
+        E:\DOC\c#_NETcore-project\webapp\Services\SellersServices.cs line 25) on the request for attach another table
+        value to
+        this request Object
+        this is called EAGER LOADING on C#, this is very important! *@
+        <dt>
+            @Html.DisplayNameFor(_ => Model.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(_ => Model.Department.Name)
+        </dd>
+    </dl>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn bg-warning">Editar</a>
+        <a asp-action="Index">Back to list</a>
+    </div>
+</div>
