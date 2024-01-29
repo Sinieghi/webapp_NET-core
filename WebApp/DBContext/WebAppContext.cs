@@ -34,7 +34,18 @@ namespace WebApp.Models
                 entity.Property(e => e.Email);
                 entity.Property(e => e.BirthDay);
                 entity.Property(e => e.BaseSalary);
+                entity.HasOne(e => e.Department);
             });
+
+            modelBuilder.Entity<SalesRecords>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Status);
+                entity.HasOne(e => e.Seller);
+                entity.Property(e => e.Amount);
+                entity.Property(e => e.Date);
+            });
+
         }
 
     }

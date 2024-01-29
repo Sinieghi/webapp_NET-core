@@ -1,0 +1,39 @@
+@model WebApp.Models.Seller
+
+@{
+    ViewData["Tile"] = "Create";
+}
+
+
+<h2>@ViewData["Create"]</h2>
+
+
+<h4>Seller</h4>
+
+<hr>
+
+<div class="row">
+    <div class="col-4">
+        <form asp-action="Create" class="form-control">
+            <div class="d-grid">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name">
+            </div>
+            <div class="d-grid">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email">
+            </div>
+            <div class="d-grid">
+                <label asp-for="BirthDay">BirthDay</label>
+                <input asp-for="BirthDay">
+            </div>
+            <div class="d-grid">
+                <label asp-for="BaseSalary">BaseSalary</label>
+                <input asp-for="BaseSalary">
+            </div>
+            <div class="d-grid">
+                <button class="btn bg-primary" style="margin-top: 1rem;">Create</button>
+            </div>
+        </form>
+    </div>
+</div>

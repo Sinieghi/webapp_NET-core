@@ -1,0 +1,54 @@
+@model IEnumerable<WebApp.Models.Seller>
+
+@{
+    ViewData["Title"] = "Sellers";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create" class="btn bg-primary">Create seller</a>
+</p>
+
+<table class="table table-stripef table-hover">
+    <tr class="bg-success">
+        <th>
+            @Html.DisplayNameFor(m => m.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.BirthDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.BaseSalary)
+        </th>
+        <th></th>
+    </tr>
+    <tBody>
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            var it = Model.ToArray()[i];
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => it.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => it.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => it.BirthDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => it.BaseSalary)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@it.Id">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@it.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@it.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tBody>
+</table>
